@@ -413,8 +413,9 @@ def forbid_important_items_on_late_styx(world: "HadesWorld", player: int, option
                 
 
 #Helper for late styx not having important items. Thanks Scipio.
+#We use 0b0001 since it is the bitflag for progresive items
 def item_is_progression(item: Item) -> bool:
-    return item.classification in [ItemClassification.progression, ItemClassification.progression_skip_balancing]
+    return item.classification & 0b0001
 
 def item_is_plando(world: "HadesWorld", item: Item, player: int) -> bool:
     return item in world.plando_items[player]
