@@ -226,9 +226,23 @@ class HadesWorld(World):
         create_regions(self, local_location_table)
 
     def fill_slot_data(self) -> dict:
-        slot_data = {}
-        for option in fields(self.options_dataclass):
-            slot_data[option.name] = str(self.options[option.name])
+        slot_data = self.options.as_dict("initial_weapon", "location_system", "score_rewards_amount", "keepsakesanity",
+                                         "weaponsanity", "hidden_aspectsanity", "storesanity", "fatesanity",
+                                         "hades_defeats_needed", "weapons_clears_needed", "keepsakes_needed", 
+                                         "fates_needed", "heat_system", "hard_labor_pact_amount",
+                                         "lasting_consequences_pact_amount", "convenience_fee_pact_amount",
+                                         "jury_summons_pact_amount", "extreme_measures_pact_amount",
+                                         "calisthenics_program_pact_amount", "benefits_package_pact_amount",
+                                         "middle_management_pact_amount", "underworld_customs_pact_amount",
+                                         "forced_overtime_pact_amount", "heightened_security_pact_amount",
+                                         "routine_inspection_pact_amount", "damage_control_pact_amount",
+                                         "approval_process_pact_amount", "tight_deadline_pact_amount",
+                                         "personal_liability_pact_amount", "darkness_pack_value", "keys_pack_value",
+                                         "gemstones_pack_value", "diamonds_pack_value", "titan_blood_pack_value",
+                                         "nectar_pack_value", "ambrosia_pack_value", "filler_helper_percentage",
+                                         "max_health_helper_percentage", "initial_money_helper_percentage",
+                                         "filler_trap_percentage", "reverse_order_em", "ignore_greece_deaths",
+                                         "store_give_hints", "automatic_rooms_finish_on_hades_defeat", "death_link")
         slot_data['seed'] = "".join(self.random.choice(string.ascii_letters) for i in range(16))
         slot_data["version_check"] = self.polycosmos_version
         return slot_data
